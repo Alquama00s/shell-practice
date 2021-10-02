@@ -1,36 +1,4 @@
-#!/bin/sh
-clear
-array=()
-line=""
-
-
-while true
-
-do
-    
-    read -d'' -s -n 1 char
-    #clear
-    printf "hfbyh--$array"
-    for i in "${array[@]}"
-    do
-        printf "$i\n"
-    done
-    printf "\n"
-    printf "$line" 
-    if [[ "$char" = $'\e' ]];
-    then
-        break
-    elif [[ "$char" = $'\x0a' ]];
-    then
-        array+=("$line")
-        printf "enter--$array"
-        line=""
-    elif [[ "$char" = $'\177' ]]; #backspace
-    then
-        line="${line%}"
-        
-    else
-        line=$(echo $line$char)
-    fi
-    
-done
+words=`wc -w <<<$1`
+lines=`wc -l <<<$1`
+chars=`wc -m <<<$1`
+printf "lines: $lines\nwords: $words\ncharacters: $chars"
